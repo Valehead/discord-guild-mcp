@@ -24,13 +24,13 @@ you can register a new one at the
 [Discord Developer Portal](https://discord.com/developers/applications)).
 
 The bot must already be a member of the target server. Registering an application doesn't
-add it to your server — that requires an OAuth2 invite, done once when the bot was
+add it to your server: that requires an OAuth2 invite, done once when the bot was
 originally set up.
 
 On that bot application, enable two privileged intents (**Bot** tab in the Developer
 Portal):
-- **Server Members Intent** — required for `list_members`
-- **Message Content Intent** — required for `get_channel_messages`
+- **Server Members Intent**: required for `list_members`
+- **Message Content Intent**: required for `get_channel_messages`
 
 You'll also need:
 - The bot token (**Bot** tab → Reset/Copy Token)
@@ -39,8 +39,8 @@ You'll also need:
 
 ## Setup
 
-The server runs in Docker — Claude Code spawns a fresh container per session over stdio,
-so there's no persistent process and no local Python environment to manage.
+The server runs in Docker. Claude Code spawns a fresh container per session over stdio, so
+there's no persistent process and no local Python environment to manage.
 
 Build the image after cloning or after any code change:
 
@@ -50,7 +50,7 @@ docker build -t discord-guild-mcp .
 ```
 
 Rebuilding is only needed when `config.py`, `discord_client.py`, `server.py`, or
-`requirements.txt` change. Editing the guild ID or token doesn't require a rebuild — those
+`requirements.txt` change. Editing the guild ID or token doesn't require a rebuild: those
 are runtime environment variables, not baked into the image.
 
 ### Manual local testing (optional)
@@ -73,7 +73,7 @@ claude mcp add discord-guild -s user -e DISCORD_BOT_TOKEN=your_token_here -e DIS
 ```
 
 The bare `-e KEY` flags (no `=value`) in the `docker run` command forward those variables
-from the spawned process's environment — which Claude Code sets from the `env` block —
+from the spawned process's environment, which Claude Code sets from the `env` block,
 straight into the container.
 
 Run `/mcp` inside Claude Code to confirm it shows as connected.
