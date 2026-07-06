@@ -1,0 +1,6 @@
+services:
+  mcp:
+    build: .
+    image: discord-guild-mcp
+    env_file: .env
+    stdin_open: true
