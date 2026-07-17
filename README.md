@@ -13,9 +13,25 @@ never posts messages or modifies the guild.
 |------|---------|
 | `get_guild_info()` | Guild name, description, member counts, feature flags |
 | `list_channels()` | All channels grouped by category, with type and topic |
+| `get_channel(channel_id)` | Detail for one channel: forum tags, thread counts/archive state |
 | `list_roles()` | All roles with name, color, position, mentionable flag |
 | `list_members(limit=100)` | Up to `limit` members with username, roles, join date |
+| `search_members(query, limit=25)` | Members whose username/nickname starts with `query` |
+| `get_member(user_id)` | A single member's username, display name, roles, join date |
 | `get_channel_messages(channel_id, limit=25)` | Recent messages from a channel |
+| `get_pinned_messages(channel_id)` | All pinned messages in a channel |
+| `list_active_threads(channel_id=None)` | Active threads guild-wide, or under one parent channel |
+| `list_archived_threads(channel_id, limit=50)` | Up to `limit` archived public threads under a channel |
+| `list_emojis()` | The guild's custom emojis |
+| `list_scheduled_events()` | The guild's scheduled events with time, status, interested count |
+
+### Forums & threads
+
+Forum channels don't hold messages directly, posts live in per-topic threads. Calling
+`get_channel_messages()` on a forum channel's ID returns an empty list. To read forum
+posts: call `list_active_threads(channel_id)` and/or `list_archived_threads(channel_id)`
+to get thread IDs, then call `get_channel_messages(thread_id)` on each (threads are
+channels in the Discord API, so the same tool works once you have the ID).
 
 ## Prerequisites
 
