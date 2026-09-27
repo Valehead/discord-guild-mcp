@@ -108,6 +108,8 @@ def _shape_member(m: dict) -> dict:
         "id": m["user"]["id"],
         "username": m["user"]["username"],
         "display_name": m.get("nick") or m["user"].get("global_name") or m["user"]["username"],
+        "nick": m.get("nick"),
+        "global_name": m["user"].get("global_name"),
         "roles": m["roles"],
         "joined_at": m["joined_at"],
         "bot": m["user"].get("bot", False),
