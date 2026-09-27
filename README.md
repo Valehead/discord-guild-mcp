@@ -15,9 +15,13 @@ never posts messages or modifies the guild.
 | `list_channels()` | All channels grouped by category, with type and topic |
 | `get_channel(channel_id)` | Detail for one channel: forum tags, thread counts/archive state |
 | `list_roles()` | All roles with name, color, position, mentionable flag |
-| `list_members(limit=100)` | Up to `limit` members with username, roles, join date |
-| `search_members(query, limit=25)` | Members whose username/nickname starts with `query` |
-| `get_member(user_id)` | A single member's username, display name, roles, join date |
+| `list_members(limit=100)` | Up to `limit` members with username, display name, server nickname, global name, roles, join date |
+| `search_members(query, limit=25)` | Members whose username/nickname starts with `query` (same fields) |
+| `get_member(user_id)` | A single member (same fields) |
+
+Every member carries `display_name` (the server nickname, falling back to the global name, then the
+username) plus the raw `nick` and `global_name`, which are `null` when unset. Use `nick` to tell a
+real server nickname from a fallback.
 | `get_channel_messages(channel_id, limit=25)` | Recent messages from a channel |
 | `get_pinned_messages(channel_id)` | All pinned messages in a channel |
 | `list_active_threads(channel_id=None)` | Active threads guild-wide, or under one parent channel |
